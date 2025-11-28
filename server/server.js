@@ -8,8 +8,11 @@ const blogRoutes = require('./routes/blogs');
 
 const app = express();
 
+
+
 // ---------- MIDDLEWARE ----------
 app.use(express.json());
+app.use(cors());
 
 // Allow CORS from frontend
 // In .env on Render, set CLIENT_URL=https://your-frontend.netlify.app
