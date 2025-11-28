@@ -13,12 +13,15 @@ app.use(express.json());
 
 // Allow CORS from frontend
 // In .env on Render, set CLIENT_URL=https://your-frontend.netlify.app
-const allowedOrigin = process.env.CLIENT_URL || 'http://localhost:5173';
+const allowedOrigins = [
+  'http://localhost:5173',process.env.CLIENT_URL, // Netlify URL
+].filter(Boolean); // remove undefined
 
 app.use(cors({
-  origin: allowedOrigin,
+  origin: allowedOrigins,
   credentials: true,
 }));
+
 
 // ---------- ROUTES ----------
 app.get('/', (req, res) => res.send('Blog API is running'));
